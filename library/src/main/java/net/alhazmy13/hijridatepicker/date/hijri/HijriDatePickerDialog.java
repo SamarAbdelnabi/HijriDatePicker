@@ -229,6 +229,7 @@ public class HijriDatePickerDialog extends DialogFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setShowsDialog(false);
         final Activity activity = getActivity();
         activity.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -558,7 +559,7 @@ public class HijriDatePickerDialog extends DialogFragment implements
         if (mVersion == Version.VERSION_2) {
             String day =
                     mCalendar.getDisplayName(UmmalquraCalendar.DAY_OF_WEEK, UmmalquraCalendar.SHORT, getLocale())
-                            + ", " + mCalendar.getDisplayName(UmmalquraCalendar.MONTH, UmmalquraCalendar.SHORT, getLocale())
+                            + ", " + mCalendar.getDisplayName(UmmalquraCalendar.MONTH, UmmalquraCalendar.LONG, getLocale())
                             + " " + String.format(getLocale(), "%2d", mCalendar.get(Calendar.DAY_OF_MONTH));
             mSelectedDayTextView.setText(day);
             if (mTitle != null)
@@ -741,8 +742,6 @@ public class HijriDatePickerDialog extends DialogFragment implements
     @SuppressWarnings("unused")
     public void setMinDate(UmmalquraCalendar calendar) {
         mMinDate = trimToMidnight((UmmalquraCalendar) calendar.clone());
-
-        setMinYear(getMinDate().get(Calendar.YEAR));
 
         if (mDayPickerView != null) {
             mDayPickerView.onChange();
@@ -1027,7 +1026,7 @@ public class HijriDatePickerDialog extends DialogFragment implements
         if (mMaxDate != null) return mMaxDate;
         UmmalquraCalendar output = new UmmalquraCalendar(getTimeZone(), getLocale());
         output.set(UmmalquraCalendar.YEAR, mMaxYear);
-        output.set(UmmalquraCalendar.DAY_OF_MONTH, 29);
+        output.set(UmmalquraCalendar.DAY_OF_MONTH, 31);
         output.set(UmmalquraCalendar.MONTH, UmmalquraCalendar.DECEMBER);
         return output;
     }

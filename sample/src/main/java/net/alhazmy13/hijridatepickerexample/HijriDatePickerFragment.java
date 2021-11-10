@@ -68,7 +68,6 @@ public class HijriDatePickerFragment extends Fragment implements HijriDatePicker
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
                 );
-                dpd.setMinDate(new UmmalquraCalendar(1300,0,1));
                 dpd.setThemeDark(modeDarkDate.isChecked());
                 dpd.vibrate(vibrateDate.isChecked());
                 dpd.dismissOnPause(dismissDate.isChecked());
@@ -100,6 +99,7 @@ public class HijriDatePickerFragment extends Fragment implements HijriDatePicker
                 }
                 //Change the language to any of supported language
                 dpd.setLocale(Locale.getDefault());
+                dpd.setYearRange(1320,1499);
                 assert getFragmentManager() != null;
                 dpd.show(getFragmentManager(), "Datepickerdialog");
             }
